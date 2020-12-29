@@ -11,10 +11,10 @@ function [sys, domains, guards] = LoadSystem(robot, load_path, varargin)
     guards = [double_lift, double_impact];
     
     sys = HybridSystem('Cassie');
-    sys = addVertex(sys, {'jumping', 'flight', 'landing'}, 'Domain', {jumping, flight, landing});
+    sys = addVertex(sys, {'Jump','Flight', 'Landing'}, 'Domain', {jumping, flight, landing});
     
-    sys = addEdge(sys, 'jumping', 'flight');
-    sys = setEdgeProperties(sys, 'jumping', 'flight', 'Guard', double_lift);
-    sys = addEdge(sys, 'flight', 'landing');
-    sys = setEdgeProperties(sys, 'flight', 'landing', 'Guard', double_impact);
+    sys = addEdge(sys, 'Jump', 'Flight');
+    sys = setEdgeProperties(sys, 'Jump', 'Flight', 'Guard', double_lift);
+    sys = addEdge(sys, 'Flight', 'Landing');
+    sys = setEdgeProperties(sys, 'Flight', 'Landing', 'Guard', double_impact);
 end
