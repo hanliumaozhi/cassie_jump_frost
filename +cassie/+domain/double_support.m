@@ -4,11 +4,10 @@ function domain = double_support(model, load_path, varargin)
     % Parse inputs
     p = inputParser;
     p.addOptional('guard', 'none')
+    p.addOptional('name', 'DoubleSupport')
     p.parse(varargin{:});
     parser_results = p.Results;
     
-    % Default domain name
-    Name = 'DoubleSupport';
 
     % make a copy of the robot model
     domain = copy(model);
@@ -40,6 +39,6 @@ function domain = double_support(model, load_path, varargin)
     domain = addVirtualConstraint(domain, cassie.virtual.actuated_joints(domain, load_path));
         
     % Set the name of the new copy
-    domain.setName(Name);
+    domain.setName(parser_results.name);
    
 end

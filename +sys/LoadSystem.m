@@ -1,10 +1,10 @@
 function [sys, domains, guards] = LoadSystem(robot, load_path, varargin)
     %% 
-    jumping = cassie.domain.double_support(robot, load_path, 'guard', 'double_lift');
+    jumping = cassie.domain.double_support(robot, load_path, 'guard', 'double_lift', 'name', 'Jump');
     double_lift = cassie.domain.lift(robot, load_path, 'leg', 'flight', 'leg', 'double');
     flight = cassie.domain.flight(robot, load_path, 'guard', 'double_support_impact');
     double_impact = cassie.domain.impact(robot, load_path, 'leg', 'double' , 'next_domain', 'double_support');
-    landing = cassie.domain.double_support(robot, load_path, 'guard', 'double_lift');
+    landing = cassie.domain.double_support(robot, load_path, 'guard', 'double_lift', 'name','Landing');
     
     
     domains = [jumping, flight, landing];
