@@ -57,16 +57,12 @@ end
 %% Load optimization problem
 % get the boundary values, needs to be manually set all boundaries.
 %%%%%%%%%%%
-bounds = cassie.GetBounds(robot, 0, 0, 0);
+bounds = cassie.GetBound(robot);
 %%%%%%%%%%%
-num_grid.RightStance = 10;
-num_grid.LeftStance = 10;
+num_grid.Jump = 10;
 % load problem
-nlp = HybridTrajectoryOptimization('two_step',system, num_grid, [],'EqualityConstraintBoundary',1e-4);
-nlp.Phase(1).Plant.UserNlpConstraint = @cassie.callback.left_stance;
-nlp.Phase(2).Plant.UserNlpConstraint = @cassie.callback.right_impact;
-nlp.Phase(3).Plant.UserNlpConstraint = @cassie.callback.right_stance;
-nlp.Phase(4).Plant.UserNlpConstraint = @cassie.callback.left_impact;
+nlp = HybridTrajectoryOptimization('jump',system, num_grid, [],'EqualityConstraintBoundary',1e-4);
+nlp.Phase(1).Plant.UserNlpConstraint = @cassie.callback.jumping;
 nlp.update; 
 
 nlp.configure(bounds);
