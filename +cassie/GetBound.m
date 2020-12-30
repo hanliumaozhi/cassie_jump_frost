@@ -6,15 +6,15 @@ bounds = struct();
 model_bounds.states.x.lb(1:3) = [-10,-10,-10];
 model_bounds.states.x.ub(1:3) = [10,10,10];
 
-model_bounds.states.x.lb(4:6) = deg2rad(-1);
-model_bounds.states.x.ub(4:6) = deg2rad(1);
+model_bounds.states.x.lb(4:6) = deg2rad(-5);
+model_bounds.states.x.ub(4:6) = deg2rad(5);
 
 % yaw equal zero
 model_bounds.states.x.lb(4) = deg2rad(0);
 model_bounds.states.x.ub(4) = deg2rad(0);
 
-model_bounds.states.x.lb([7,8,14,15]) = deg2rad(-5);
-model_bounds.states.x.ub([7,8,14,15]) = deg2rad(5);
+model_bounds.states.x.lb([7,8,14,15]) = deg2rad(-10);
+model_bounds.states.x.ub([7,8,14,15]) = deg2rad(10);
 
 %% Jump
 bounds.Jump = model_bounds;

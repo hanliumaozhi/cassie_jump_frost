@@ -10,14 +10,18 @@ function jumping(nlp, bounds, varargin)
     addNodeConstraint(nlp, cassie.constraints.tauF(nlp), ...
         [{'T'},domain.VirtualConstraints.time.PhaseParamName], 'last', 0, 0, 'Nonlinear');
     %% leg length
-    for k =1:21
-       addNodeConstraint(nlp, cassie.constraints.left_leg_length(nlp), ...
-           {'x'}, k, bounds.leg_length(k), bounds.leg_length(k), 'Nonlinear');
-    end
-    
-    for k =1:21
-       addNodeConstraint(nlp, cassie.constraints.right_leg_length(nlp), ...
-           {'x'}, k, bounds.leg_length(k), bounds.leg_length(k), 'Nonlinear');
+%     for k =1:21
+%        addNodeConstraint(nlp, cassie.constraints.left_leg_length(nlp), ...
+%            {'x'}, k, bounds.leg_length(k)-0.01, bounds.leg_length(k)+0.01, 'Nonlinear');
+%     end
+%     
+%     for k =1:21
+%        addNodeConstraint(nlp, cassie.constraints.right_leg_length(nlp), ...
+%            {'x'}, k, bounds.leg_length(k), bounds.leg_length(k), 'Nonlinear');
+%     end
+    for k=1:21
+        addNodeConstraint(nlp, cassie.constraints.base_link_z(nlp), ...
+            {'x'}, k, bounds.leg_length(k), bounds.leg_length(k), 'Nonlinear');
     end
     %% com x
     for k =1:21
@@ -59,5 +63,5 @@ function jumping(nlp, bounds, varargin)
     %% Costs
     
     % Torque Cost
-    addRunningCost(nlp, cassie.costs.torque(nlp), 'u');
+    addRunningCost(nlp, cassie.costs.leg_acc(nlp), 'ddx');
 end
