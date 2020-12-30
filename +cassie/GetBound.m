@@ -9,6 +9,10 @@ model_bounds.states.x.ub(1:3) = [10,10,10];
 model_bounds.states.x.lb(4:6) = deg2rad(-1);
 model_bounds.states.x.ub(4:6) = deg2rad(1);
 
+% yaw equal zero
+model_bounds.states.x.lb(4) = deg2rad(0);
+model_bounds.states.x.ub(4) = deg2rad(0);
+
 model_bounds.states.x.lb([7,8,14,15]) = deg2rad(-5);
 model_bounds.states.x.ub([7,8,14,15]) = deg2rad(5);
 
@@ -53,6 +57,8 @@ bounds.Jump.params.ptime.x0 = [bounds.Jump.time.t0.x0, bounds.Jump.time.tf.x0];
 
 bounds.Jump.time.kp = 100;
 bounds.Jump.time.kd = 20;
+
+bounds.Jump.leg_length = [0.698551; 0.69871; 0.699385; 0.700854; 0.703276; 0.706807; 0.711606; 0.717832; 0.725642; 0.735194; 0.746646; 0.760157; 0.775885; 0.793987; 0.814621; 0.837946; 0.86412; 0.893301; 0.925647; 0.961315; 1];
 
 
 
