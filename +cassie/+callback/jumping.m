@@ -23,6 +23,13 @@ function jumping(nlp, bounds, varargin)
         addNodeConstraint(nlp, cassie.constraints.base_link_z(nlp), ...
             {'x'}, k, bounds.leg_length(k), bounds.leg_length(k), 'Nonlinear');
     end
+    
+    %% toe x
+    for k=1:21
+        addNodeConstraint(nlp, cassie.constraints.toe_x_eq(nlp), ...
+            {'x'}, k, 0, 0, 'Nonlinear');
+    end
+    
     %% com x
     for k =1:21
        addNodeConstraint(nlp, cassie.constraints.com_x(nlp), ...
