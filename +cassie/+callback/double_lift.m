@@ -7,6 +7,7 @@ function double_lift(nlp, src, tar, bounds, varargin)
     
     % Remove default constraint and add back selectable one
     removeConstraint(nlp,['xDiscreteMap' nlp.Plant.Name]);
+    
     selected = SymVariable('s',[nlp.Plant.numState,1]);
     R = nlp.Plant.R;
     x = nlp.Plant.States.x;
@@ -16,4 +17,11 @@ function double_lift(nlp, src, tar, bounds, varargin)
     
     selected = ones(20,1);
     addNodeConstraint(nlp, x_map, {'x','xn'}, 'first', 0, 0, 'Linear', selected);
+    
+    dx = nlp.Plant.States.dx;
+    dxn = nlp.Plant.States.dxn;
+    dx_diff = selected.*(R*dx-dxn);
+    dx_map = SymFunction(['dxDiscreteMap' nlp.Plant.Name],dx_diff,{dx,dxn}, selected);
+    
+    addNodeConstraint(nlp, dx_map, {'dx','dxn'}, 'first', 0, 0, 'Linear', selected);
 end
