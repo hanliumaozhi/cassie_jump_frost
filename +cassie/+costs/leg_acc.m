@@ -9,7 +9,7 @@ function [ leg_acc_fun ] = leg_acc( nlp )
 cost = 0;
 q_acc = nlp.Plant.States.ddx(3);
 for i=1:length(q_acc)
-    cost = cost + q_acc(i)*q_acc(i);
+    cost = cost + 100*q_acc(i)*q_acc(i);
 end
 leg_acc_fun = SymFunction('leg_acc', cost, {nlp.Plant.States.ddx});
 

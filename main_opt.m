@@ -24,7 +24,7 @@ urdf = fullfile(cur,'urdf','cassie.urdf'); % Build full file name from parts
 % vector) will be delayed. Delaying this operation will save significant
 % loading time.
 delay_set = false;
-OMIT_CORIOLIS = false;
+OMIT_CORIOLIS = true;
 LOAD = false;
 % if 'load_sym' is true, it will load symbolic expressions from previously
 % save external files instead of re-compute them. It reduce the loading
@@ -60,6 +60,7 @@ end
 bounds = cassie.GetBound(robot);
 %%%%%%%%%%%
 num_grid.Jump = 10;
+num_grid.Flight = 10;
 % load problem
 nlp = HybridTrajectoryOptimization('jump',system, num_grid, [],'EqualityConstraintBoundary',1e-4);
 nlp.Phase(1).Plant.UserNlpConstraint = @cassie.callback.jumping;
@@ -119,7 +120,7 @@ ANIM_PATH = fullfile(cur, 'gen', 'animator');
 if ~exist(ANIM_PATH,'dir')
     mkdir(ANIM_PATH);
 end
-anim = plot.cassie_load_animation(robot, gait, [], 'ExportPath', ANIM_PATH, 'SkipExporting', false); % set 'SkipExporting' = false, only for the first time!
+anim = plot.cassie_load_animation(robot, gait, [], 'ExportPath', ANIM_PATH, 'SkipExporting', true); % set 'SkipExporting' = false, only for the first time!
 
 
 

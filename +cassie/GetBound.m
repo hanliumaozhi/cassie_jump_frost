@@ -42,6 +42,22 @@ bounds.Jump.inputs.ConstraintWrench.fLeftSole.lb = -10000;
 bounds.Jump.inputs.ConstraintWrench.fLeftSole.ub = 10000;
 bounds.Jump.inputs.ConstraintWrench.fLeftSole.x0 = 100;
 
+bounds.Jump.inputs.ConstraintWrench.ffixedKneeSpring.lb = -10000;
+bounds.Jump.inputs.ConstraintWrench.ffixedKneeSpring.ub = 10000;
+bounds.Jump.inputs.ConstraintWrench.ffixedKneeSpring.x0 = 100;
+
+bounds.Jump.inputs.ConstraintWrench.ffourBar.lb = -10000;
+bounds.Jump.inputs.ConstraintWrench.ffourBar.ub = 10000;
+bounds.Jump.inputs.ConstraintWrench.ffourBar.x0 = 100;
+
+bounds.Jump.params.pfixedKneeSpring.lb = -0*ones(2,1);
+bounds.Jump.params.pfixedKneeSpring.ub = 0*ones(2,1);
+bounds.Jump.params.pfixedKneeSpring.x0 = zeros(2,1);
+
+bounds.Jump.params.pfourBar.lb = -0*ones(2,1);
+bounds.Jump.params.pfourBar.ub = 0*ones(2,1);
+bounds.Jump.params.pfourBar.x0 = zeros(2,1);
+
 bounds.Jump.params.pRightSole.lb = [-1;-1;0;0;-pi/2];
 bounds.Jump.params.pRightSole.ub = [1;1;0;0;-pi/2];
 bounds.Jump.params.pRightSole.x0 = [0;0;0;0;-pi/2];
@@ -68,12 +84,76 @@ bounds.Jump.leg_length = [0.698551; 0.69871; 0.699385; 0.700854; 0.703276; 0.706
 %% Landing
 bounds.Landing = model_bounds;
 
+bounds.Landing.time.t0.lb = 0;
+bounds.Landing.time.t0.ub = 0;
+bounds.Landing.time.t0.x0 = 0;
+
+bounds.Landing.time.tf.lb = 0.4;
+bounds.Landing.time.tf.ub = 0.4;
+bounds.Landing.time.tf.x0 = 0.4;
+
+bounds.Landing.time.duration.lb = 0.4;
+bounds.Landing.time.duration.ub = 0.4;
+bounds.Landing.time.duration.x0 = 0.4;
+
+bounds.Landing.params.atime.lb = -10*ones(6*10,1);
+bounds.Landing.params.atime.ub = 10*ones(6*10,1);
+bounds.Landing.params.atime.x0 = zeros(6*10,1);
+
+bounds.Landing.params.ptime.lb = [bounds.Landing.time.tf.lb, bounds.Landing.time.t0.lb];
+bounds.Landing.params.ptime.ub = [bounds.Landing.time.tf.ub, bounds.Landing.time.t0.ub];
+bounds.Landing.params.ptime.x0 = [bounds.Landing.time.t0.x0, bounds.Landing.time.tf.x0];
+
+bounds.Landing.time.kp = 100;
+bounds.Landing.time.kd = 20;
+
 %% Flight
 bounds.Flight = model_bounds;
+
+bounds.Flight.time.t0.lb = 0;
+bounds.Flight.time.t0.ub = 0;
+bounds.Flight.time.t0.x0 = 0;
+
+bounds.Flight.time.tf.lb = 0.4;
+bounds.Flight.time.tf.ub = 0.4;
+bounds.Flight.time.tf.x0 = 0.4;
+
+bounds.Flight.time.duration.lb = 0.4;
+bounds.Flight.time.duration.ub = 0.4;
+bounds.Flight.time.duration.x0 = 0.4;
+
+bounds.Flight.params.atime.lb = -10*ones(6*10,1);
+bounds.Flight.params.atime.ub = 10*ones(6*10,1);
+bounds.Flight.params.atime.x0 = zeros(6*10,1);
+
+bounds.Flight.params.ptime.lb = [bounds.Flight.time.tf.lb, bounds.Flight.time.t0.lb];
+bounds.Flight.params.ptime.ub = [bounds.Flight.time.tf.ub, bounds.Flight.time.t0.ub];
+bounds.Flight.params.ptime.x0 = [bounds.Flight.time.t0.x0, bounds.Flight.time.tf.x0];
+
+bounds.Flight.time.kp = 100;
+bounds.Flight.time.kd = 20;
+
+bounds.Flight.inputs.ConstraintWrench.ffixedKneeSpring.lb = -10000;
+bounds.Flight.inputs.ConstraintWrench.ffixedKneeSpring.ub = 10000;
+bounds.Flight.inputs.ConstraintWrench.ffixedKneeSpring.x0 = 100;
+
+bounds.Flight.inputs.ConstraintWrench.ffourBar.lb = -10000;
+bounds.Flight.inputs.ConstraintWrench.ffourBar.ub = 10000;
+bounds.Flight.inputs.ConstraintWrench.ffourBar.x0 = 100;
+
+bounds.Flight.params.pfixedKneeSpring.lb = -0*ones(2,1);
+bounds.Flight.params.pfixedKneeSpring.ub = 0*ones(2,1);
+bounds.Flight.params.pfixedKneeSpring.x0 = zeros(2,1);
+
+bounds.Flight.params.pfourBar.lb = -0*ones(2,1);
+bounds.Flight.params.pfourBar.ub = 0*ones(2,1);
+bounds.Flight.params.pfourBar.x0 = zeros(2,1);
 
 %% impact
 
 % Right Impact
 bounds.ImpactDoubleSupport = model_bounds;
+
+bounds.DoubleLift = model_bounds;
 
 end
