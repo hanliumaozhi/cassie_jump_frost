@@ -53,6 +53,7 @@ function guard = lift(model, load_path, varargin)
     
     
     % Set the impact constraint
-    guard.addImpactConstraint(struct2array(domain.HolonomicConstraints), load_path);
+    %guard.addImpactConstraint(struct2array(domain.HolonomicConstraints), load_path);
+    guard.configure();
     
 end

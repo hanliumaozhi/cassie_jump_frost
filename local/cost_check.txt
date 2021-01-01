@@ -3,7 +3,7 @@ Checking cost value of Jump:
 **************************************************
         Cost 	        Value
 Cost: leg_acc 
-     leg_acc 	 2.80805643E+01
+     leg_acc 	 1.51684868E+01
 **************************************************
 **************************************************
 Checking cost value of DoubleLift:
@@ -14,6 +14,6 @@ Checking cost value of DoubleLift:
 Checking cost value of Flight:
 **************************************************
         Cost 	        Value
-Cost: torque 
-      torque 	 1.24110311E-08
+Cost: motor_position 
+motor_position 	 3.39229101E+01
 **************************************************
