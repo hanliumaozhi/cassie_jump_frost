@@ -25,10 +25,15 @@ function [conGUI] = cassie_load_animation(robot, gait, terrain, varargin)
     t = [];
     q = [];
     
-    for j=cont_domain_idx.'
-        t = [t,gait(j).tspan];         %#ok<*AGROW>
-        q = [q,gait(j).states.x];
-    end
+    
+    %for j=cont_domain_idx.'
+    %    t = [t,gait(j).tspan];         %#ok<*AGROW>
+    %    q = [q,gait(j).states.x];
+    %end
+    t = [t,gait(1).tspan];
+    q = [q,gait(1).states.x];
+    t = [t,(gait(3).tspan+0.4)];
+    q = [q,gait(3).states.x];
     
     
     f = figure(1000); clf;

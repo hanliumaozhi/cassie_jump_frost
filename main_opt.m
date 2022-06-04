@@ -62,7 +62,7 @@ bounds = cassie.GetBound(robot);
 num_grid.Jump = 10;
 num_grid.Flight = 10;
 % load problem
-nlp = HybridTrajectoryOptimization('jump',system, num_grid, [],'EqualityConstraintBoundary',1e-4);
+nlp = HybridTrajectoryOptimization('jump',system, num_grid, [],'EqualityConstraintBoundary',1e-3);
 nlp.Phase(1).Plant.UserNlpConstraint = @cassie.callback.jumping;
 nlp.Phase(2).Plant.UserNlpConstraint = @cassie.callback.double_lift;
 nlp.Phase(3).Plant.UserNlpConstraint = @cassie.callback.flight;
@@ -73,10 +73,12 @@ nlp.update;
 
 %% Compile stuff if needed (only need to run for the first time)
 % compileObjective(nlp,[],[],export_path);
-% compileConstraint(nlp,[],[],export_path, {'dynamics_equation'});
+compileConstraint(nlp,[],[],export_path, {'dynamics_equation'});
 
 compileObjective(nlp,[],[],export_path);
-compileConstraint(nlp,[],[],export_path);
+%compileConstraint(nlp,[],[],export_path); a
+ a
+ 
 
 
 %% Save expression (only need to run for the first time)

@@ -62,13 +62,13 @@ function jumping(nlp, bounds, varargin)
 %         'DepVariables',{nlp.OptVarTable.x, nlp.OptVarTable.dx});
 %     
 %     addConstraint(nlp, ['pitch_momentum_', domain.Name], 'all', pitch_momentum_cstr);
-    for k =1:21
-       addNodeConstraint(nlp, cassie.constraints.pitch_momentum(nlp), ...
-           {'x', 'dx'}, k, 0, 0, 'Nonlinear');
-    end
+%     for k =1:21
+%        addNodeConstraint(nlp, cassie.constraints.pitch_momentum(nlp), ...
+%            {'x', 'dx'}, k, 0, 0, 'Nonlinear');
+%     end
     
     %% Costs
     
     % Torque Cost
-    addRunningCost(nlp, cassie.costs.leg_acc(nlp), 'ddx');
+    addRunningCost(nlp, cassie.costs.pitch_moment(nlp), {'x','dx','ddx'});
 end

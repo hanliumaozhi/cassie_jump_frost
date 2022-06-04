@@ -35,8 +35,8 @@ function flight(nlp, bounds, varargin)
 %    end
     
     %% Costs
-    X0 = SymVariable('xxx',[nlp.Plant.numState,1]);
+    %X0 = SymVariable('xxx',[nlp.Plant.numState,1]);
     
     % Torque Cost
-    addRunningCost(nlp, cassie.costs.motor_position(nlp, X0), {'x','xxx'});
+    addRunningCost(nlp, cassie.costs.leg_velocity(nlp), {'dx'});
 end
